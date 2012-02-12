@@ -34,4 +34,4 @@ Leach is licensed under the MIT license and is copyright &copy; 2012 Pierre Minn
 [8]: http://mongrel2.org/static/book-finalch6.html#x8-810005.5
 [9]: http://symfony.com/doc/current/book/page_creation.html#page-creation-bundles
 [10]: http://silex.sensiolabs.org/doc/providers.html
-[11]: https://raw.github.com/pminnieur/Leach/master/LICENSE
+[11]: https://raw.github.com/pminnieur/Leach/develop/LICENSE
