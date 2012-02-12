@@ -120,13 +120,15 @@ class Transport
     /**
      * Receives a request.
      *
+     * @todo improve Request creation
+     *
      * @return Request
      *
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
      *
-     * @see Request::create()
-     * @see Request::createFromGlobals()
+     * @see Request::create
+     * @see Request::createFromGlobals
      */
     public function recv()
     {
@@ -164,7 +166,6 @@ class Transport
             parse_str($server['query'], $query);
         }
 
-        // create request
         $request = Request::create(
             $path,
             $method,
@@ -199,6 +200,9 @@ class Transport
     /**
      * Sends a response for a request.
      *
+    // @todo streamed responses
+     * @todo cookie headers
+     *
      * @param Request $request A Request instance
      * @param Response $response A Response instance
      *
@@ -226,7 +230,6 @@ class Transport
 
         $httpVersion = $response->getProtocolVersion();
 
-        // @todo check streamed responses
         ob_start();
         $response->sendContent();
         $content = ob_get_contents();
@@ -235,8 +238,6 @@ class Transport
         if (!$response->headers->has('Content-Length')) {
             $response->headers->set('Content-Length', strlen($content));
         }
-
-        // @todo cookie headers
 
         $message = sprintf("%s %s HTTP/%s %d %s\r\n%s\r\n%s\r\n",
             $uuid,
