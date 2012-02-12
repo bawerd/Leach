@@ -1,0 +1,59 @@
+{
+    "name": "pminnieur/leach",
+    "type": "appserver",
+    "keywords": ["symfony", "silex", "mongrel2", "server", "appserver", "zeromq", "zmq", "0mq"],
+    "homepage": "https://bitbucket.org/pminnieur/leach",
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Pierre Minnieur",
+            "email": "pm@pierre-minnieur.de",
+            "homepage": "http://pierre-minnieur.de"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.3.2",
+        "phuedx/tnetstring": "*",
+        "symfony/console": "*",
+        "symfony/event-dispatcher": "*",
+        "symfony/http-foundation": "*",
+        "symfony/http-kernel": "*"
+    },
+
+    "suggest": {
+        "symfony/config": "*",
+        "symfony/dependency-injection": "*",
+        "symfony/finder": "*"
+    },
+
+    "repositories": {
+        "tnetstring": {
+            "package": {
+                "name": "phuedx/tnetstring",
+                "version": "master",
+                "dist": {
+                    "url": "https://github.com/phuedx/tnetstring/zipball/master",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "git://github.com/phuedx/tnetstring.git",
+                    "reference": "master",
+                    "type": "git"
+                },
+                "autoload": {
+                    "psr-0": { "TNetstring_": "src/" }
+                }
+            }
+        }
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Leach": "src/"
+        }
+    },
+
+    "bin": ["bin/leach"]
+}

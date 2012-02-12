@@ -1,0 +1,11 @@
+/build
+/composer.phar
+/composer.lock
+/docs/_build
+/examples/{logs,run}
+/examples/leach.db
+/examples/symfony/symfony-standard
+/examples/silex/silex.phar
+/leach.phar
+/phpunit.xml
+/vendor
