@@ -14,7 +14,7 @@ Configure and start Mongrel2:
 
 .. code-block:: console
 
-    cd examples
+    cd examples && mkdir -p logs run
     m2sh load -config leach.conf -db leach.db
     m2sh start -host localhost -db leach.db
 
@@ -59,7 +59,7 @@ Configure and start Mongrel2:
 
 .. code-block:: console
 
-    cd examples
+    cd examples && mkdir -p logs run
     m2sh load -config leach.conf -db leach.db
     m2sh start -host localhost -db leach.db
 
