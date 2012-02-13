@@ -1,4 +1,5 @@
 /build
+/build.xml
 /composer.phar
 /composer.lock
 /docs/_build
