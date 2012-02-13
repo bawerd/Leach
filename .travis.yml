@@ -1,6 +1,7 @@
 language: php
 
 php:
+  - 5.3.2
   - 5.3
   - 5.4
 
@@ -10,6 +11,6 @@ branches:
 
 before_script:
   - wget -nc http://getcomposer.org/composer.phar
-  - php composer.phar install --dev --install-suggests
+  - php composer.phar install --install-suggests
 
 script: phpunit --coverage-text
