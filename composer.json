@@ -1,31 +1,32 @@
 {
-    "name": "pminnieur/leach",
+    "name": "pminnieur/Leach",
     "type": "appserver",
     "keywords": ["symfony", "silex", "mongrel2", "server", "appserver", "zeromq", "zmq", "0mq"],
-    "homepage": "https://bitbucket.org/pminnieur/leach",
+    "homepage": "http://leach.io/",
     "license": "MIT",
+    "version": "2.1.0-dev",
 
     "authors": [
         {
             "name": "Pierre Minnieur",
             "email": "pm@pierre-minnieur.de",
-            "homepage": "http://pierre-minnieur.de"
+            "homepage": "http://pierre-minnieur.de/"
         }
     ],
 
     "require": {
         "php": ">=5.3.2",
         "phuedx/tnetstring": "*",
-        "symfony/console": "*",
-        "symfony/event-dispatcher": "*",
-        "symfony/http-foundation": "*",
-        "symfony/http-kernel": "*"
+        "symfony/console": "2.1.*",
+        "symfony/event-dispatcher": "2.1.*",
+        "symfony/http-foundation": "2.1.*",
+        "symfony/http-kernel": "2.1.*"
     },
 
     "suggest": {
-        "symfony/config": "*",
-        "symfony/dependency-injection": "*",
-        "symfony/finder": "*"
+        "symfony/config": "2.1.*",
+        "symfony/dependency-injection": "2.1.*",
+        "symfony/finder": "2.1.*"
     },
 
     "repositories": {

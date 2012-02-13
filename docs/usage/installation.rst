@@ -8,7 +8,7 @@ Download Leach Phar file:
 
 .. code-block:: console
 
-    wget http://get.falsep.com/leach.phar
+    wget http://leach.io/leach.phar
     php leach.phar
 
 PEAR package *(coming soon)*

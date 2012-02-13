@@ -29,7 +29,7 @@ Leach is licensed under the MIT license and is copyright &copy; 2012 Pierre Minn
 [3]: http://www.zeromq.org/
 [4]: http://mongrel2.org/
 [5]: http://pear.zero.mq/
-[6]: http://get.falsep.com/leach.phar
+[6]: http://leach.io/leach.phar
 [7]: http://leach.readthedocs.org/
 [8]: http://mongrel2.org/static/book-finalch6.html#x8-810005.5
 [9]: http://symfony.com/doc/current/book/page_creation.html#page-creation-bundles
