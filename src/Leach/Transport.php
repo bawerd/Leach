@@ -86,6 +86,8 @@ class Transport
      * Connects to remote endpoints.
      *
      * @return void
+     *
+     * @link http://mongrel2.org/static/book-finalch6.html#x8-720005.3.1
      */
     public function connect()
     {
@@ -95,15 +97,15 @@ class Transport
 
         // receiving socket
         $this->recv = $this->context->getSocket(\ZMQ::SOCKET_PULL);
-        $this->recv->connect($this->recvSpec);
         if (null !== $this->recvId) {
             $this->recv->setSockOpt(\ZMQ::SOCKOPT_IDENTITY, $this->recvId);
         }
+        $this->recv->connect($this->recvSpec);
 
         // sending socket
         $this->send = $this->context->getSocket(\ZMQ::SOCKET_PUB);
-        $this->send->connect($this->sendSpec);
         $this->send->setSockOpt(\ZMQ::SOCKOPT_IDENTITY, $this->sendId);
+        $this->send->connect($this->sendSpec);
     }
 
     /**
@@ -200,7 +202,7 @@ class Transport
     /**
      * Sends a response for a request.
      *
-    // @todo streamed responses
+     * @todo streamed responses
      * @todo cookie headers
      *
      * @param Request $request A Request instance
