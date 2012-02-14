@@ -26,7 +26,9 @@ class SilexContainer extends Container
     /**
      * @var array
      */
-    protected $defaults = array();
+    protected $defaults = array(
+        'use_http_cache' => false
+    );
 
     /**
      * Constructor.
@@ -63,6 +65,10 @@ class SilexContainer extends Container
      */
     public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
     {
+        if ($this->getOptions()->get('use_http_cache', false)) {
+            return $this->application['http_cache']->handle($request, $type, $catch);
+        }
+
         return $this->application->handle($request, $type, $catch);
     }
 }

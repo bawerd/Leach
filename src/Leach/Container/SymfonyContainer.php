@@ -13,6 +13,7 @@ namespace Leach\Container;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\HttpKernel\TerminableInterface;
 
@@ -27,21 +28,21 @@ class SymfonyContainer extends Container
     protected $defaults = array();
 
     /**
-     * @var KernelInterface
+     * @var HttpKernelInterface
      */
     private $kernel;
 
     /**
      * Constructor.
      *
-     * @param KernelInterface $kernel A KernelInterface instance
+     * @param HttpKernelInterface $kernel A HttpKernelInterface instance
      * @param array $options (optional) An array of options
      * @param EventDispatcherInterface $dispatcher A EventDispatcherInterface instance
      *
      * @see Container::__construct
      * @see ParameterBag
      */
-    public function __construct(KernelInterface $kernel, array $options = array(), EventDispatcherInterface $dispatcher = null)
+    public function __construct(HttpKernelInterface $kernel, array $options = array(), EventDispatcherInterface $dispatcher = null)
     {
         /*
          * **NOTICE**
@@ -74,9 +75,9 @@ class SymfonyContainer extends Container
     }
 
     /**
-     * Returns a KernelInterface instance.
+     * Returns a HttpKernelInterface instance.
      *
-     * @return KernelInterface
+     * @return HttpKernelInterface
      */
     public function getKernel()
     {

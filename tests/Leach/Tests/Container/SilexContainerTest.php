@@ -11,6 +11,8 @@
 
 namespace Leach\Tests\Container;
 
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+
 use Silex\Application;
 
 use Leach\Container\SilexContainer;
@@ -39,10 +41,58 @@ class SilexContainerTest extends TestCase
      */
     public function testHandle()
     {
-        $container = new SilexContainer(new Application());
+        $application = new Application();
+
+        $httpCache = $this->getHttpCacheMock();
+        $application['http_cache'] = $httpCache;
+
+        $httpCache
+            ->expects($this->never())
+            ->method('handle');
+
+        $container = new SilexContainer($application);
         $this->assertInstanceOf(
             'Symfony\\Component\\HttpFoundation\\Response',
             $container->handle($this->getRequestMock())
         );
+    }
+
+    /**
+     * @covers \Leach\Container\SilexContainer::handle
+     */
+    public function testHandleWithHttpCache()
+    {
+        $request = $this->getRequestMock();
+        $response = $this->getResponseMock();
+
+        $application = new Application();
+
+        $httpCache = $this->getHttpCacheMock();
+        $application['http_cache'] = $httpCache;
+
+        $httpCache
+            ->expects($this->once())
+            ->method('handle')
+            ->with(
+                $this->equalTo($request),
+                $this->equalTo(HttpKernelInterface::MASTER_REQUEST),
+                $this->equalTo(true)
+            )
+            ->will($this->returnValue($response));
+
+
+        $container = new SilexContainer($application, array('use_http_cache' => true));
+        $this->assertSame($response, $container->handle($request));
+    }
+
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    private function getHttpCacheMock()
+    {
+        return $this
+            ->getMockBuilder('Symfony\\Component\\HttpKernel\\HttpCache\\HttpCache')
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 }

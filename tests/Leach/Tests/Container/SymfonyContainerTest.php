@@ -11,6 +11,8 @@
 
 namespace Leach\Tests\Container;
 
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+
 use Leach\Container\SymfonyContainer;
 use Leach\Event;
 use Leach\Events;
@@ -45,7 +47,11 @@ class SymfonyContainerTest extends TestCase
         $kernel
             ->expects($this->once())
             ->method('handle')
-            ->with($this->equalTo($request))
+            ->with(
+                $this->equalTo($request),
+                $this->equalTo(HttpKernelInterface::MASTER_REQUEST),
+                $this->equalTo(true)
+            )
             ->will($this->returnValue($response));
 
         $container = new SymfonyContainer($kernel);
@@ -265,7 +271,6 @@ class SymfonyContainerTest extends TestCase
             $this->getResponseMock()
         ));
 
-
         $request = $this->getRequestMock();
         $response = $this->getResponseMock();
 
@@ -289,14 +294,6 @@ class SymfonyContainerTest extends TestCase
             $request,
             $response
         ));
-    }
-
-    /**
-     * @expectedException \PHPUnit_Framework_Error
-     */
-    public function testHttpKernelIsNotEnough()
-    {
-        $container = new SymfonyContainer($this->getHttpKernelMock());
     }
 
     /**
