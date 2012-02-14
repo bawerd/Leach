@@ -62,14 +62,6 @@ class TestTransport extends Transport
     }
 
     /**
-     * @return string
-     */
-    public function getRecvId()
-    {
-        return $this->recvId;
-    }
-
-    /**
      * @return \ZMQSocket
      */
     public function getRecv()

@@ -13,7 +13,8 @@ send-spec
 ---------
 
 * **Type**: string
-* **Default**: tcp://127.0.0.1:9997
+* **Default**: tcp://127.0.0.1:9998
+* **Note**: equals Mongrel2 *recv_spec*
 
 send-id
 -------
@@ -25,13 +26,8 @@ recv-spec
 ---------
 
 * **Type**: string
-* **Default**: tcp://127.0.0.1:9996
-
-recv-id
--------
-
-* **Type**: string
-* **Default**: null
+* **Default**: tcp://127.0.0.1:9999
+* **Note**: equals Mongrel2 *send_spec*
 
 -----------
  Container
@@ -54,6 +50,7 @@ send_spec
 
 * **Type**: string
 * **Default**: null
+* **Note**: equals Mongrel2 *recv_spec*
 
 send_id
 -------
@@ -66,9 +63,4 @@ recv_spec
 
 * **Type**: string
 * **Default**: null
-
-recv_id
--------
-
-* **Type**: string
-* **Default**: null
+* **Note**: equals Mongrel2 *send_spec*

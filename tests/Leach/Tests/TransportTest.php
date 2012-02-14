@@ -25,13 +25,13 @@ class TransportTest extends TestCase
      */
     public function testTransport()
     {
-        $transport = new TestTransport('tcp://127.0.0.1:9997', 'test');
+        $transport = new TestTransport('tcp://127.0.0.1:9998', 'test');
 
         $sendSpec = $transport->getSendSpec();
         $this->assertInstanceOf('Leach\\Socket', $sendSpec);
         $this->assertEquals('tcp', $sendSpec->getProtocol());
         $this->assertEquals('127.0.0.1', $sendSpec->getAddress());
-        $this->assertEquals(9997, $sendSpec->getPort());
+        $this->assertEquals(9998, $sendSpec->getPort());
         $this->assertNull($transport->getSend());
 
         $this->assertEquals('test', $transport->getSendId());
@@ -40,9 +40,7 @@ class TransportTest extends TestCase
         $this->assertInstanceOf('Leach\\Socket', $recvSpec);
         $this->assertEquals('tcp', $recvSpec->getProtocol());
         $this->assertEquals('127.0.0.1', $recvSpec->getAddress());
-        $this->assertEquals(9996, $recvSpec->getPort());
-
-        $this->assertNull($transport->getRecvId());
+        $this->assertEquals(9999, $recvSpec->getPort());
 
         // must not connect with object instantiation
         $this->assertNull($transport->getRecv());
@@ -55,20 +53,13 @@ class TransportTest extends TestCase
      */
     public function testConnect()
     {
-        $transport = new TestTransport('tcp://127.0.0.1:9997', 'test');
+        $transport = new TestTransport('tcp://127.0.0.1:9998', 'test');
         $transport->connect();
 
         $send = $transport->getSend();
         $this->assertInstanceOf('ZMQSocket', $send);
         $this->assertEquals('test', $send->getSockOpt(\ZMQ::SOCKOPT_IDENTITY));
-
         $this->assertInstanceOf('ZMQSocket', $transport->getRecv());
-
-        $transport = new TestTransport('tcp://127.0.0.1:9997', 'test', null, 'test');
-        $transport->connect();
-
-        $recv = $transport->getRecv();
-        $this->assertEquals('test', $recv->getSockOpt(\ZMQ::SOCKOPT_IDENTITY));
     }
 
     /**
@@ -77,7 +68,7 @@ class TransportTest extends TestCase
      */
     public function testDisconnect()
     {
-        $transport = new TestTransport('tcp://127.0.0.1:9997', 'test');
+        $transport = new TestTransport('tcp://127.0.0.1:9998', 'test');
         $transport->connect();
         $transport->disconnect();
 
@@ -91,7 +82,7 @@ class TransportTest extends TestCase
      */
     public function testNotConnectedRecv()
     {
-        $transport = new TestTransport('tcp://127.0.0.1:9997', 'test');
+        $transport = new TestTransport('tcp://127.0.0.1:9998', 'test');
         $transport->recv();
     }
 
@@ -107,7 +98,7 @@ class TransportTest extends TestCase
             ->method('recv')
             ->will($this->returnValue(' '));
 
-        $transport = new TestTransport('tcp://127.0.0.1:9997', 'test');
+        $transport = new TestTransport('tcp://127.0.0.1:9998', 'test');
         $transport->setRecv($recv); // fake connect
         $transport->recv();
     }
@@ -125,7 +116,7 @@ class TransportTest extends TestCase
             ->method('recv')
             ->will($this->returnValue($this->getRequestMessage()));
 
-        $transport = new TestTransport('tcp://127.0.0.1:9997', 'test');
+        $transport = new TestTransport('tcp://127.0.0.1:9998', 'test');
         $transport->setRecv($recv); // fake connect
 
         $request = $transport->recv();
@@ -150,7 +141,7 @@ class TransportTest extends TestCase
      */
     public function testNotConnectedSend()
     {
-        $transport = new TestTransport('tcp://127.0.0.1:9997', 'test');
+        $transport = new TestTransport('tcp://127.0.0.1:9998', 'test');
         $transport->send($this->getRequestMock(), $this->getResponseMock());
     }
 
@@ -172,7 +163,7 @@ class TransportTest extends TestCase
 
         $response = new Response();
 
-        $transport = new TestTransport('tcp://127.0.0.1:9997', 'test');
+        $transport = new TestTransport('tcp://127.0.0.1:9998', 'test');
         $transport->setSend($send); // fake connect
         $transport->send($request, $response);
     }

@@ -35,10 +35,9 @@ class StartCommand extends Command
         $this
             ->setDefinition(array(
                 new InputArgument('container', InputArgument::REQUIRED),
-                new InputOption('send-spec', null, InputOption::VALUE_OPTIONAL, '', 'tcp://127.0.0.1:9997'),
+                new InputOption('send-spec', null, InputOption::VALUE_OPTIONAL, '', 'tcp://127.0.0.1:9998'),
                 new InputOption('send-id', null, InputOption::VALUE_OPTIONAL, '', '296fef89-153f-4464-8f53-952b3a750b1b'),
                 new InputOption('recv-spec', null, InputOption::VALUE_OPTIONAL),
-                new InputOption('recv-id', null, InputOption::VALUE_OPTIONAL),
             ))
             ->setDescription('')
             ->setHelp(<<<'EOT'
@@ -85,8 +84,7 @@ EOT
         return new Transport(
             $options->get('send_spec', $input->getOption('send-spec')),
             $options->get('send_id', $input->getOption('send-id')),
-            $options->get('recv_spec', $input->getOption('recv-spec')),
-            $options->get('recv_id', $input->getOption('recv-id'))
+            $options->get('recv_spec', $input->getOption('recv-spec'))
         );
     }
 

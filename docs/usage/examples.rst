@@ -18,9 +18,9 @@ Example Mongrel2 configuration (as in ``examples/leach.conf``):
 
 .. code-block:: lua
 
-    leach = Handler(send_spec = 'tcp://127.0.0.1:9997',
+    leach = Handler(send_spec = 'tcp://127.0.0.1:9999',
                     send_ident = 'b6c95667-4ede-4cf0-b2de-a54d826576c9',
-                    recv_spec = 'tcp://127.0.0.1:9996',
+                    recv_spec = 'tcp://127.0.0.1:9998',
                     recv_ident = '')
 
     localhost = Host(name="localhost", routes={
@@ -35,7 +35,7 @@ Example Mongrel2 configuration (as in ``examples/leach.conf``):
         default_host = "localhost",
         name = "leach",
         pid_file = "/run/mongrel2.pid",
-        port = 3000,
+        port = 6767,
         hosts = [localhost]
     )
 

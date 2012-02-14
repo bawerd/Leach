@@ -32,11 +32,6 @@ class Transport
     protected $recvSpec;
 
     /**
-     * @var string
-     */
-    protected $recvId;
-
-    /**
      * @var \ZMQContext
      */
     protected $context;
@@ -61,7 +56,7 @@ class Transport
      *
      * @throws \RuntimeException
      */
-    public function __construct($sendSpec, $sendId, $recvSpec = null, $recvId = null)
+    public function __construct($sendSpec, $sendId, $recvSpec = null)
     {
         if (!class_exists('ZMQ')) {
             // @codeCoverageIgnoreStart
@@ -72,14 +67,13 @@ class Transport
         $this->sendSpec = new Socket($sendSpec);
         $this->sendId = $sendId;
 
-        // assume the sendSpec port number decreased by one
+        // assume port increased by one
         if (null === $recvSpec) {
             $recvSpec = clone $this->sendSpec;
-            $recvSpec->setPort($recvSpec->getPort() - 1);
+            $recvSpec->setPort($recvSpec->getPort() + 1);
         }
 
         $this->recvSpec = new Socket($recvSpec);
-        $this->recvId = $recvId;
     }
 
     /**
@@ -95,14 +89,11 @@ class Transport
             $this->context = new \ZMQContext();
         }
 
-        // receiving socket
+        // receiving socket (sending socket from Mongrel2)
         $this->recv = $this->context->getSocket(\ZMQ::SOCKET_PULL);
-        if (null !== $this->recvId) {
-            $this->recv->setSockOpt(\ZMQ::SOCKOPT_IDENTITY, $this->recvId);
-        }
         $this->recv->connect($this->recvSpec);
 
-        // sending socket
+        // sending socket (receiving socket from Mongrel2)
         $this->send = $this->context->getSocket(\ZMQ::SOCKET_PUB);
         $this->send->setSockOpt(\ZMQ::SOCKOPT_IDENTITY, $this->sendId);
         $this->send->connect($this->sendSpec);
