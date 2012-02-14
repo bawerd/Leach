@@ -15,7 +15,8 @@ require_once __DIR__.'/../vendor/.composer/autoload.php';
 use Symfony\Component\Console\Application;
 
 use Leach\Command\StartCommand;
+use Leach\Leach;
 
-$app = new Application('Leach', '2.1.0-dev');
+$app = new Application('Leach', Leach::VERSION);
 $app->add(new StartCommand());
 $app->run();
