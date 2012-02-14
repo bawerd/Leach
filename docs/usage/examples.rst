@@ -1,14 +1,10 @@
-Examples
-========
+==========
+ Examples
+==========
 
-Silex
------
-
-Download Silex Phar file:
-
-.. code-block:: console
-
-    wget http://silex.sensiolabs.org/get/silex.phar examples/silex/silex.phar
+----------
+ Mongrel2
+----------
 
 Configure and start Mongrel2:
 
@@ -17,6 +13,49 @@ Configure and start Mongrel2:
     cd examples && mkdir -p logs run
     m2sh load -config leach.conf -db leach.db
     m2sh start -host localhost -db leach.db
+
+Example Mongrel2 configuration (as in ``examples/leach.conf``):
+
+.. code-block:: lua
+
+    leach = Handler(send_spec = 'tcp://127.0.0.1:9997',
+                    send_ident = 'b6c95667-4ede-4cf0-b2de-a54d826576c9',
+                    recv_spec = 'tcp://127.0.0.1:9996',
+                    recv_ident = '')
+
+    localhost = Host(name="localhost", routes={
+        '/': leach
+    })
+
+    main = Server(
+        uuid = "2dfc4c3b-1a6d-4965-a924-66ff081c3c29",
+        access_log = "/logs/access.log",
+        error_log = "/logs/error.log",
+        chroot = "./",
+        default_host = "localhost",
+        name = "leach",
+        pid_file = "/run/mongrel2.pid",
+        port = 3000,
+        hosts = [localhost]
+    )
+
+    servers = [main]
+
+-------
+ Silex
+-------
+
+Download Silex Phar file:
+
+.. code-block:: console
+
+    wget http://silex.sensiolabs.org/get/silex.phar examples/silex/silex.phar
+
+Start Leach:
+
+.. code-block:: console
+
+    php leach.phar start examples/silex/container.php --send-id=1e44c719-9d26-4992-8dd8-00142f650ea7
 
 Example Silex container (as in ``examples/silex/container.php``):
 
@@ -37,15 +76,9 @@ Example Silex container (as in ``examples/silex/container.php``):
 
     return new SilexContainer($app);
 
-
-Start Leach:
-
-.. code-block:: console
-
-    php leach.phar start examples/silex/container.php --send-id=1e44c719-9d26-4992-8dd8-00142f650ea7
-
-Symfony
--------
+---------
+ Symfony
+---------
 
 Install "Symfony Standard Edition" distribution:
 
@@ -55,13 +88,11 @@ Install "Symfony Standard Edition" distribution:
     cd examples/symfony/symfony-standard
     php bin/vendors install
 
-Configure and start Mongrel2:
+Start Leach:
 
 .. code-block:: console
 
-    cd examples && mkdir -p logs run
-    m2sh load -config leach.conf -db leach.db
-    m2sh start -host localhost -db leach.db
+    php leach.phar start examples/symfony/container.php --send-id=0aa1d405-e5b5-4a0c-a222-3fc4e30e0e6d
 
 Example Symfony container (as in ``examples/symfony/container.php``):
 
@@ -80,10 +111,3 @@ Example Symfony container (as in ``examples/symfony/container.php``):
     $kernel->loadClassCache();
 
     return new SymfonyContainer($kernel);
-
-
-Start Leach:
-
-.. code-block:: console
-
-    php leach.phar start examples/symfony/container.php --send-id=0aa1d405-e5b5-4a0c-a222-3fc4e30e0e6d

@@ -16,6 +16,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpFoundation\ParameterBag;
 
 use Leach\Container\ContainerInterface;
 use Leach\Server;
@@ -34,8 +35,8 @@ class StartCommand extends Command
         $this
             ->setDefinition(array(
                 new InputArgument('container', InputArgument::REQUIRED),
-                new InputOption('send-spec', null, InputOption::VALUE_REQUIRED, '', 'tcp://127.0.0.1:9997'),
-                new InputOption('send-id', null, InputOption::VALUE_REQUIRED),
+                new InputOption('send-spec', null, InputOption::VALUE_OPTIONAL, '', 'tcp://127.0.0.1:9997'),
+                new InputOption('send-id', null, InputOption::VALUE_OPTIONAL, '', '296fef89-153f-4464-8f53-952b3a750b1b'),
                 new InputOption('recv-spec', null, InputOption::VALUE_OPTIONAL),
                 new InputOption('recv-id', null, InputOption::VALUE_OPTIONAL),
             ))
@@ -53,24 +54,39 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $server = new Server($this->getTransport($input), $this->getContainer($input));
-        $server->start();
+        $this->getServer($input)->start();
+    }
+
+    /**
+     * Returns a Server instance.
+     *
+     * @param InputInterface $input A InputInterface instance
+     *
+     * @return Server
+     */
+    protected function getServer(InputInterface $input)
+    {
+        return new Server(
+            $container = $this->getContainer($input),
+            $this->getTransport($input, $container->getOptions())
+        );
     }
 
     /**
      * Returns a Transport instance.
      *
      * @param InputInterface $input A InputInterface instance
+     * @param ParameterBag $options A ParameterBag instance
      *
      * @return Transport
      */
-    protected function getTransport(InputInterface $input)
+    protected function getTransport(InputInterface $input, ParameterBag $options)
     {
         return new Transport(
-            $input->getOption('send-spec'),
-            $input->getOption('send-id'),
-            $input->getOption('recv-spec'),
-            $input->getOption('recv-id')
+            $options->get('send_spec', $input->getOption('send-spec')),
+            $options->get('send_id', $input->getOption('send-id')),
+            $options->get('recv_spec', $input->getOption('recv-spec')),
+            $options->get('recv_id', $input->getOption('recv-id'))
         );
     }
 

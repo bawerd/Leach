@@ -30,9 +30,9 @@ class ServerTest extends TestCase
     {
         $transport = $this->getTransportMock();
         $container = $this->getContainerMock();
-        $server = new Server($transport, $container);
-        $this->assertSame($transport, $server->getTransport());
+        $server = new Server($container, $transport);
         $this->assertSame($container, $server->getContainer());
+        $this->assertSame($transport, $server->getTransport());
     }
 
     /**
@@ -84,7 +84,7 @@ class ServerTest extends TestCase
             ->method('getOptions')
             ->will($this->returnValue($options));
 
-        $server = new Server($transport, $container);
+        $server = new Server($container, $transport);
         $server->start();
     }
 
@@ -146,7 +146,7 @@ class ServerTest extends TestCase
             ->method('getOptions')
             ->will($this->returnValue($options));
 
-        $server = new Server($transport, $container);
+        $server = new Server($container, $transport);
         $server->start();
     }
 

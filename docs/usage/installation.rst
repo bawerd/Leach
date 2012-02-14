@@ -1,8 +1,10 @@
-Installation
-============
+==============
+ Installation
+==============
 
-Phar file *(recommended)*
--------------------------
+---------------------------
+ Phar file *(recommended)*
+---------------------------
 
 Download Leach Phar file:
 
@@ -11,13 +13,15 @@ Download Leach Phar file:
     wget http://leach.io/leach.phar
     php leach.phar
 
-PEAR package *(coming soon)*
-----------------------------
+------------------------------
+ PEAR package *(coming soon)*
+------------------------------
 
 Coming soon.
 
-Clone from GitHub
------------------
+-------------------
+ Clone from GitHub
+-------------------
 
 Clone Leach git repository:
 

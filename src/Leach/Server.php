@@ -46,14 +46,14 @@ class Server
     /**
      * Constructor.
      *
-     * @param Transport $transport A Transport instance
      * @param ContainerInterface $container A ContainerInterface instance
+     * @param Transport $transport A Transport instance
      */
-    public function __construct(Transport $transport, ContainerInterface $container)
+    public function __construct(ContainerInterface $container, Transport $transport)
     {
-        $this->requests = 0;
-        $this->transport = $transport;
         $this->container = $container;
+        $this->transport = $transport;
+        $this->requests = 0;
 
         // @codeCoverageIgnoreStart
         if (false === gc_enabled()) {
