@@ -29,7 +29,7 @@ Filter a request.
  leach.response
 ----------------
 
-Filter a response. The server uses ``leach.response`` to add a ``X-Leach-Version`` header to each response.
+Filter a response. The server uses ``leach.response`` events to add a ``X-Leach-Version`` header to each response.
 
 * **Event:** ``Leach\Event\FilterResponseEvent``
 * **Payload**
