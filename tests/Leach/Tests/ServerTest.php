@@ -168,11 +168,11 @@ class ServerTest extends TestCase
             ->expects($this->at(0))
             ->method('dispatch')
             ->with($this->equalTo(Events::SETUP), $this->isInstanceOf('Leach\\Event\\SetUpEvent'));
-                $dispatcher
+        $dispatcher
             ->expects($this->at(1))
             ->method('dispatch')
             ->with($this->equalTo(Events::REQUEST), $this->isInstanceOf('Leach\\Event\\FilterRequestEvent'));
-                    $dispatcher
+        $dispatcher
             ->expects($this->at(2))
             ->method('dispatch')
             ->with($this->equalTo(Events::RESPONSE), $this->isInstanceOf('Leach\\Event\\FilterResponseEvent'));
