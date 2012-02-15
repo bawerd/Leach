@@ -39,8 +39,11 @@ class Compiler
         $finder = new Finder();
         $finder
             ->files()
+            ->ignoreDotFiles(true)
+            ->ignoreVCS(true)
             ->name('*.php')
             ->notName('Compiler.php')
+            ->exclude($this->rootDir.'/src/Leach/Test')
             ->in($this->rootDir.'/src')
         ;
 
@@ -51,10 +54,13 @@ class Compiler
         $finder = new Finder();
         $finder
             ->files()
+            ->ignoreDotFiles(true)
+            ->ignoreVCS(true)
             ->name('*.php')
             ->in(array(
                 $this->rootDir.'/vendor/phuedx/tnetstring',
                 $this->rootDir.'/vendor/symfony/console',
+                $this->rootDir.'/vendor/symfony/event-dispatcher',
                 $this->rootDir.'/vendor/symfony/http-foundation',
                 $this->rootDir.'/vendor/symfony/http-kernel',
             ))
