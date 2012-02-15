@@ -124,8 +124,14 @@ class Server
     }
 
     /**
+     * Exposes Leach version on responses w/ a 'X-Leach-Version' header.
+     *
+     * @param FilterResponseEvent $event A FilterResponseEvent instance
+     *
+     * @return void
      */
-    static public function exposeVersion(FilterResponseEvent $event) {
+    static public function exposeVersion(FilterResponseEvent $event)
+    {
         $event->getResponse()->headers->set('X-Leach-Version', Leach::VERSION);
     }
 
