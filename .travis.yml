@@ -10,7 +10,7 @@ branches:
     - develop
 
 before_script:
-  - wget -nc http://getcomposer.org/composer.phar
-  - php composer.phar install --install-suggests
+  - wget -nc http://getcomposer.org/composer.phar composer.phar
+  - php composer.phar install --install-suggests --prefer-source
 
 script: phpunit --coverage-text
