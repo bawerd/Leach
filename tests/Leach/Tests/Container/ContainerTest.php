@@ -29,7 +29,10 @@ class ContainerTest extends TestCase
 
         $options = $container->getOptions();
         $this->assertInstanceOf('Symfony\\Component\\HttpFoundation\\ParameterBag', $options);
-        $this->assertEquals(array('max_requests' => 500), $options->all());
+        $this->assertEquals(array(
+            'expose_leach' => false,
+            'max_requests' => 500
+        ), $options->all());
 
         $container = new TestContainer(array('foo' => 'bar'));
         $this->assertTrue($container->getOptions()->has('foo'));

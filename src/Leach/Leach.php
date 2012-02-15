@@ -16,5 +16,10 @@ namespace Leach;
  */
 final class Leach
 {
+    /**
+     * @var string
+     *
+     * @link http://semver.org/
+     */
     const VERSION = '2.1.0-dev';
 }

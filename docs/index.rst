@@ -8,3 +8,4 @@
    usage/installation
    usage/configuration
    usage/examples
+   usage/events

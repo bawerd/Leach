@@ -18,6 +18,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 use Leach\Container\ContainerInterface;
+use Leach\Event\FilterRequestEvent;
+use Leach\Event\FilterResponseEvent;
 use Leach\Event\SetUpEvent;
 use Leach\Event\TearDownEvent;
 
@@ -54,6 +56,14 @@ class Server
         $this->container = $container;
         $this->transport = $transport;
         $this->requests = 0;
+
+        // expose Leach version
+        if ($this->container->getOptions()->get('expose_leach', false)) {
+            $this->container->getEventDispatcher()->addListener(
+                Events::RESPONSE,
+                array(__CLASS__, 'exposeVersion')
+            );
+        }
 
         // @codeCoverageIgnoreStart
         if (false === gc_enabled()) {
@@ -114,6 +124,12 @@ class Server
     }
 
     /**
+     */
+    static public function exposeVersion(FilterResponseEvent $event) {
+        $event->getResponse()->headers->set('X-Leach-Version', Leach::VERSION);
+    }
+
+    /**
      * Whether the server is running.
      *
      * @return Boolean
@@ -142,8 +158,15 @@ class Server
     {
         $this->setUp();
 
+        // receive Request, filter Request
         $request = $this->transport->recv();
+        $request = $this->filterRequest($request)->getRequest();
+
+        // handle Request, filter Response
         $response = $this->container->handle($request);
+        $response = $this->filterResponse($request, $response)->getResponse();
+
+        // send Response
         $this->transport->send($request, $response);
 
         $this->tearDown($request, $response);
@@ -152,9 +175,48 @@ class Server
     }
 
     /**
+     * Dispatches a 'leach.request' event.
+     *
+     * @param Request $request A Request instance
+     *
+     * @return FilterRequestEvent
+     *
+     * @see Events::RESPONSE
+     * @see FilterRequestEvent::__construct
+     * @see EventDispatcherInterface::dispatch
+     */
+    protected function filterRequest(Request $request)
+    {
+        $event = new FilterRequestEvent($this->container, $request);
+        $this->container->getEventDispatcher()->dispatch(Events::REQUEST, $event);
+
+        return $event;
+    }
+
+    /**
+     * Dispatches a 'leach.response' event.
+     *
+     * @param Request $request A Request instance
+     * @param Response $response A Response instance
+     *
+     * @return FilterResponseEvent
+     *
+     * @see Events::RESPONSE
+     * @see FilterResponseEvent::__construct
+     * @see EventDispatcherInterface::dispatch
+     */
+    protected function filterResponse(Request $request, Response $response)
+    {
+        $event = new FilterResponseEvent($this->container, $request, $response);
+        $this->container->getEventDispatcher()->dispatch(Events::RESPONSE, $event);
+
+        return $event;
+    }
+
+    /**
      * Dispatches a 'leach.setup' event.
      *
-     * @return void
+     * @return SetUpEvent
      *
      * @see Events::SETUP
      * @see SetUpEvent::__construct
@@ -164,6 +226,8 @@ class Server
     {
         $event = new SetUpEvent($this->container);
         $this->container->getEventDispatcher()->dispatch(Events::SETUP, $event);
+
+        return $event;
     }
 
     /**
@@ -172,7 +236,7 @@ class Server
      * @param Request $request A Request instance
      * @param Response $response A Response instance
      *
-     * @return void
+     * @return TearDownEvent
      *
      * @see Events::TEARDOWN
      * @see TearDownEvent::__construct
@@ -182,5 +246,7 @@ class Server
     {
         $event = new TearDownEvent($this->container, $request, $response);
         $this->container->getEventDispatcher()->dispatch(Events::TEARDOWN, $event);
+
+        return $event;
     }
 }

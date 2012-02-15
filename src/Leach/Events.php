@@ -28,5 +28,19 @@ final class Events
      *
      * @var string
      */
+    const REQUEST = 'leach.request';
+
+    /**
+     * @todo add some detailed information about this event.
+     *
+     * @var string
+     */
+    const RESPONSE = 'leach.response';
+
+    /**
+     * @todo add some detailed information about this event.
+     *
+     * @var string
+     */
     const TEARDOWN = 'leach.teardown';
 }

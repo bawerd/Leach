@@ -11,7 +11,13 @@
 
 namespace Leach\Event;
 
+use Leach\Events;
+
 /**
+ * A 'leach.setup' event.
+ *
+ * @see Events::SETUP
+ *
  * @codeCoverageIgnore
  */
 class SetUpEvent extends Event

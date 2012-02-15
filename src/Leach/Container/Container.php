@@ -50,6 +50,7 @@ abstract class Container implements ContainerInterface
         }
 
         $this->options = new ParameterBag(array(
+            'expose_leach' => false,
             'max_requests' => 500,
         ));
         $this->options->add($this->defaults);

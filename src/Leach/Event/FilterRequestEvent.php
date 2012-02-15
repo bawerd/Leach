@@ -12,17 +12,16 @@
 namespace Leach\Event;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 use Leach\Container\ContainerInterface;
 use Leach\Events;
 
 /**
- * A 'leach.teardown' event.
+ * A 'leach.request' event.
  *
- * @see Events::TEARDOWN
+ * @see Events::REQUEST
  */
-class TearDownEvent extends SetUpEvent
+class FilterRequestEvent extends Event
 {
     /**
      * @var Request
@@ -30,23 +29,16 @@ class TearDownEvent extends SetUpEvent
     protected $request;
 
     /**
-     * @var Response
-     */
-    protected $response;
-
-    /**
      * Constructor.
      *
      * @param ContainerInterface $container A ContainerInterface instance
      * @param Request $request A Request instance
-     * @param Response $response A Response instance
      */
-    public function __construct(ContainerInterface $container, Request $request, Response $response)
+    public function __construct(ContainerInterface $container, Request $request)
     {
-        parent::__construct($container, $request);
+        parent::__construct($container);
 
         $this->request = $request;
-        $this->response = $response;
     }
 
     /**
@@ -57,15 +49,5 @@ class TearDownEvent extends SetUpEvent
     public function getRequest()
     {
         return $this->request;
-    }
-
-    /**
-     * Returns a Response instance.
-     *
-     * @return Response
-     */
-    public function getResponse()
-    {
-        return $this->response;
     }
 }

@@ -11,27 +11,21 @@
 
 namespace Leach\Tests\Event;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
-use Leach\Event\TearDownEvent;
+use Leach\Event\FilterRequestEvent;
 use Leach\Test\TestCase;
 
-class TearDownEventTest extends TestCase
+class FilterRequestEventTest extends TestCase
 {
     /**
-     * @covers \Leach\Event\TearDownEvent::__construct
-     * @covers \Leach\Event\TearDownEvent::getResponse
-     * @covers \Leach\Event\TearDownEvent::getRequest
+     * @covers \Leach\Event\FilterRequestEvent::__construct
+     * @covers \Leach\Event\FilterRequestEvent::getRequest
      */
-    public function testTearDownEvent()
+    public function testEvent()
     {
         $container = $this->getMock('Leach\\Container\\ContainerInterface');
         $request = $this->getRequestMock();
-        $response = $this->getResponseMock();
-        $event = new TearDownEvent($container, $request, $response);
+        $event = new FilterRequestEvent($container, $request);
         $this->assertSame($container, $event->getContainer());
         $this->assertSame($request, $event->getRequest());
-        $this->assertSame($response, $event->getResponse());
     }
 }

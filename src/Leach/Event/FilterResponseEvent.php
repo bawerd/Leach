@@ -18,17 +18,12 @@ use Leach\Container\ContainerInterface;
 use Leach\Events;
 
 /**
- * A 'leach.teardown' event.
+ * A 'leach.response' event.
  *
- * @see Events::TEARDOWN
+ * @see Events::RESPONSE
  */
-class TearDownEvent extends SetUpEvent
+class FilterResponseEvent extends FilterRequestEvent
 {
-    /**
-     * @var Request
-     */
-    protected $request;
-
     /**
      * @var Response
      */
@@ -45,18 +40,7 @@ class TearDownEvent extends SetUpEvent
     {
         parent::__construct($container, $request);
 
-        $this->request = $request;
         $this->response = $response;
-    }
-
-    /**
-     * Returns a Request instance.
-     *
-     * @return Request
-     */
-    public function getRequest()
-    {
-        return $this->request;
     }
 
     /**
