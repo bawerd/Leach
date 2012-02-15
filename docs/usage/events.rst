@@ -8,7 +8,7 @@ Each event has a getter method to access the payload. To access a ``$container``
  leach.setup
 -------------
 
-Setup a container. The Symfony container uses ``leach.teardown`` events to ``boot`` kernels.
+Setup a container. The Symfony container uses ``leach.setup`` events to ``boot`` kernels.
 
 * **Event:** ``Leach\Event\SetUpEvent``
 * **Payload**
