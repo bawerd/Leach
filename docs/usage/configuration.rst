@@ -9,7 +9,7 @@
 start
 =====
 
-.. code-block:: php
+.. code-block:: console
 
     php leach.phar start <container> [options]
 
@@ -24,6 +24,7 @@ send-spec
 
 .. code-block:: php
 
+    <?php
     $container = new Container(array(
         'send_spec' => 'tcp://127.0.0.1:9998',
     ));
@@ -77,6 +78,7 @@ Adds a ``X-Leach-Version`` header to each ``Response``.
 
 .. code-block:: php
 
+    <?php
     return new Container(array(
         'expose_leach' => false,
     ));
@@ -91,6 +93,7 @@ max_requests
 
 .. code-block:: php
 
+    <?php
     return new Container(array(
         'max_requests' => 500,
     ));
@@ -109,6 +112,7 @@ send_spec
 
 .. code-block:: php
 
+    <?php
     return new Container(array(
         'send_spec' => 'tcp://127.0.0.1:9998',
     ));
@@ -123,6 +127,7 @@ send_id
 
 .. code-block:: php
 
+    <?php
     return new Container(array(
         'send_id' => '296fef89-153f-4464-8f53-952b3a750b1b',
     ));
@@ -138,6 +143,7 @@ recv_spec
 
 .. code-block:: php
 
+    <?php
     return new Container(array(
         'recv_spec' => 'tcp://127.0.0.1:9999',
     ));
