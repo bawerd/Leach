@@ -25,7 +25,11 @@ class SymfonyContainer extends Container
     /**
      * @var array
      */
-    protected $defaults = array();
+    protected $defaults = array(
+        'kernel_boot' => true,
+        'kernel_terminate' => true,
+        'kernel_shutdown' => true,
+    );
 
     /**
      * @var HttpKernelInterface
@@ -59,17 +63,23 @@ class SymfonyContainer extends Container
         $this->kernel = $kernel;
 
         // boot KernelInterface instances
-        if ($this->getOptions()->get('kernel_boot', true)) {
+        if ($this->getOptions()->get('kernel_boot', true) &&
+            $this->kernel instanceof KernelInterface
+        ) {
             $this->setUp(array(__CLASS__, 'boot')/* , 256 */);
         }
 
         // terminate TerminableInterface instances
-        if ($this->getOptions()->get('kernel_terminate', true)) {
+        if ($this->getOptions()->get('kernel_terminate', true) &&
+            $this->kernel instanceof TerminableInterface
+        ) {
             $this->tearDown(array(__CLASS__, 'terminate')/* , 512 */);
         }
 
         // shutdown KernelInterface instances
-        if ($this->getOptions()->get('kernel_shutdown', true)) {
+        if ($this->getOptions()->get('kernel_shutdown', true) &&
+            $this->kernel instanceof KernelInterface
+        ) {
             $this->tearDown(array(__CLASS__, 'shutdown')/* , 1024 */);
         }
     }
@@ -102,10 +112,7 @@ class SymfonyContainer extends Container
      */
     static public function boot(SetUpEvent $event)
     {
-        $kernel = $event->getContainer()->getKernel();
-        if ($kernel instanceof KernelInterface) {
-            $kernel->boot();
-        }
+        $event->getContainer()->getKernel()->boot();
     }
 
     /**
@@ -118,10 +125,10 @@ class SymfonyContainer extends Container
      */
     static public function terminate(TearDownEvent $event)
     {
-        $kernel = $event->getContainer()->getKernel();
-        if ($kernel instanceof TerminableInterface) {
-            $kernel->terminate($event->getRequest(), $event->getResponse());
-        }
+        $event->getContainer()->getKernel()->terminate(
+            $event->getRequest(),
+            $event->getResponse()
+        );
     }
 
     /**
@@ -134,9 +141,6 @@ class SymfonyContainer extends Container
      */
     static public function shutdown(TearDownEvent $event)
     {
-        $kernel = $event->getContainer()->getKernel();
-        if ($kernel instanceof KernelInterface) {
-            $kernel->shutdown();
-        }
+        $event->getContainer()->getKernel()->shutdown();
     }
 }

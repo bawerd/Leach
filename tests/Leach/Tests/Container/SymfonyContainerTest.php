@@ -135,32 +135,6 @@ class SymfonyContainerTest extends TestCase
      */
     public function testBoot()
     {
-        $kernel = $this->getHttpKernelMock();
-        $kernel
-            ->expects($this->never())
-            ->method('boot');
-
-        $container = $this->getSymfonyContainerMock();
-        $container
-            ->expects($this->once())
-            ->method('getKernel')
-            ->will($this->returnValue($kernel));
-
-        SymfonyContainer::boot(new Event\SetUpEvent($container));
-
-        $kernel = $this->getMock('Symfony\\Component\\HttpKernel\\TerminableInterface');
-        $kernel
-            ->expects($this->never())
-            ->method('boot');
-
-        $container = $this->getSymfonyContainerMock();
-        $container
-            ->expects($this->once())
-            ->method('getKernel')
-            ->will($this->returnValue($kernel));
-
-        SymfonyContainer::boot(new Event\SetUpEvent($container));
-
         $kernel = $this->getKernelMock();
         $kernel
             ->expects($this->once())
@@ -180,40 +154,6 @@ class SymfonyContainerTest extends TestCase
      */
     public function testShutdown()
     {
-        $kernel = $this->getHttpKernelMock();
-        $kernel
-            ->expects($this->never())
-            ->method('shutdown');
-
-        $container = $this->getSymfonyContainerMock();
-        $container
-            ->expects($this->once())
-            ->method('getKernel')
-            ->will($this->returnValue($kernel));
-
-        SymfonyContainer::shutdown(new Event\TearDownEvent(
-            $container,
-            $this->getRequestMock(),
-            $this->getResponseMock()
-        ));
-
-        $kernel = $this->getMock('Symfony\\Component\\HttpKernel\\TerminableInterface');
-        $kernel
-            ->expects($this->never())
-            ->method('shutdown');
-
-        $container = $this->getSymfonyContainerMock();
-        $container
-            ->expects($this->once())
-            ->method('getKernel')
-            ->will($this->returnValue($kernel));
-
-        SymfonyContainer::shutdown(new Event\TearDownEvent(
-            $container,
-            $this->getRequestMock(),
-            $this->getResponseMock()
-        ));
-
         $kernel = $this->getKernelMock();
         $kernel
             ->expects($this->once())
@@ -237,40 +177,6 @@ class SymfonyContainerTest extends TestCase
      */
     public function testTerminate()
     {
-        $kernel = $this->getHttpKernelMock();
-        $kernel
-            ->expects($this->never())
-            ->method('terminate');
-
-        $container = $this->getSymfonyContainerMock();
-        $container
-            ->expects($this->once())
-            ->method('getKernel')
-            ->will($this->returnValue($kernel));
-
-        SymfonyContainer::terminate(new Event\TearDownEvent(
-            $container,
-            $this->getRequestMock(),
-            $this->getResponseMock()
-        ));
-
-        $kernel = $this->getKernelMock();
-        $kernel
-            ->expects($this->never())
-            ->method('terminate');
-
-        $container = $this->getSymfonyContainerMock();
-        $container
-            ->expects($this->once())
-            ->method('getKernel')
-            ->will($this->returnValue($kernel));
-
-        SymfonyContainer::terminate(new Event\TearDownEvent(
-            $container,
-            $this->getRequestMock(),
-            $this->getResponseMock()
-        ));
-
         $request = $this->getRequestMock();
         $response = $this->getResponseMock();
 
