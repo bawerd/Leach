@@ -29,27 +29,6 @@
         "symfony/finder": "2.1.*"
     },
 
-    "repositories": {
-        "tnetstring": {
-            "package": {
-                "name": "phuedx/tnetstring",
-                "version": "master",
-                "dist": {
-                    "url": "https://github.com/phuedx/tnetstring/zipball/master",
-                    "type": "zip"
-                },
-                "source": {
-                    "url": "git://github.com/phuedx/tnetstring.git",
-                    "reference": "master",
-                    "type": "git"
-                },
-                "autoload": {
-                    "psr-0": { "TNetstring_": "src/" }
-                }
-            }
-        }
-    },
-
     "autoload": {
         "psr-0": {
             "Leach": "src/"
