@@ -1,4 +1,4 @@
-h# LEACH [![Build status](https://secure.travis-ci.org/pminnieur/Leach.png)](http://travis-ci.org/pminnieur/Leach)
+# LEACH [![Build status](https://secure.travis-ci.org/pminnieur/Leach.png)](http://travis-ci.org/pminnieur/Leach)
 
 Leach is a [Symfony2][1] [HttpKernel][2] friendly [0MQ][3] handler for the language agnostic web server [Mongrel2][4].
 
