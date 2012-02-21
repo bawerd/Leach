@@ -18,11 +18,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Application extends \ArrayObject implements HttpKernelInterface
 {
-    public function __construct()
-    {
-        $this['dispatcher'] = new EventDispatcher();
-    }
-
     public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
     {
         return new Response();

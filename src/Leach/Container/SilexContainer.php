@@ -34,17 +34,13 @@ class SilexContainer extends Container
      * Constructor.
      *
      * @param Application $application A Application instance
-     * @param array $options (optional)
+     * @param array $options (optional) An array of options
      * @param EventDispatcherInterface $dispatcher A EventDispatcherInterface instance
      *
      * @see Container::__construct
      */
     public function __construct(Application $application, array $options = array(), EventDispatcherInterface $dispatcher = null)
     {
-        if (null === $dispatcher) {
-            $dispatcher = $application['dispatcher'];
-        }
-
         parent::__construct($options, $dispatcher);
 
         $this->application = $application;

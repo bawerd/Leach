@@ -27,13 +27,8 @@ class SilexContainerTest extends TestCase
     public function testSilexContainer()
     {
         $application = new Application();
-
-        $dispatcher = $this->getEventDispatcherMock();
-        $application['dispatcher'] = $dispatcher;
-
         $container = new SilexContainer($application);
         $this->assertSame($application, $container->getApplication());
-        $this->assertSame($dispatcher, $container->getEventDispatcher());
     }
 
     /**

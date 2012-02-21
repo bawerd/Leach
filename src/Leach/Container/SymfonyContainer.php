@@ -48,16 +48,6 @@ class SymfonyContainer extends Container
      */
     public function __construct(HttpKernelInterface $kernel, array $options = array(), EventDispatcherInterface $dispatcher = null)
     {
-        /*
-         * **NOTICE**
-         *
-         * As we reboot the kernel on each run, we cannot use its event dispatcher
-         * instance like the Silex container does. But you can use your own Symfony
-         * container which does not reboot the kernel each time, so that the event
-         * dispatcher instance is available permanently.
-         *
-         * If we would use it, we would lose all event listeners with each run.
-         */
         parent::__construct($options, $dispatcher);
 
         $this->kernel = $kernel;
