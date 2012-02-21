@@ -18,14 +18,16 @@ Download Leach Phar file:
  Composer
 ----------
 
-Adjust your ``composer.json``:
+Add the following entry to your ``composer.json``:
 
 .. code-block:: json
 
-    "require": {
-        "leach/leach": "dev-master",
-        // ...
-    }
+    { "require": { "leach/leach": "dev-master" }}
+
+Checkout `detailed package information on Packagist`_.
+
+.. _detailed package information on Packagist:
+    http://packagist.org/packages/leach/leach
 
 ------------------------------
  PEAR package *(coming soon)*
