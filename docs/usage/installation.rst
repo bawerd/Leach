@@ -13,6 +13,20 @@ Download Leach Phar file:
     wget http://leach.io/leach.phar
     php leach.phar
 
+
+----------
+ Composer
+----------
+
+Adjust your ``composer.json``:
+
+.. code-block:: json
+
+    "require": {
+        "leach/leach": "dev-master",
+        // ...
+    }
+
 ------------------------------
  PEAR package *(coming soon)*
 ------------------------------
