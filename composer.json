@@ -1,10 +1,9 @@
 {
-    "name": "pminnieur/Leach",
+    "name": "leach/leach",
     "type": "appserver",
     "keywords": ["symfony", "silex", "mongrel2", "server", "appserver", "zeromq", "zmq", "0mq"],
     "homepage": "http://leach.io/",
     "license": "MIT",
-    "version": "2.1.0-dev",
 
     "authors": [
         {
@@ -16,17 +15,17 @@
 
     "require": {
         "php": ">=5.3.2",
-        "phuedx/tnetstring": "*",
-        "symfony/console": "2.1.*",
-        "symfony/event-dispatcher": "2.1.*",
-        "symfony/http-foundation": "2.1.*",
-        "symfony/http-kernel": "2.1.*"
+        "phuedx/tnetstring": "dev-master",
+        "symfony/console": "dev-master",
+        "symfony/event-dispatcher": "dev-master",
+        "symfony/http-foundation": "dev-master",
+        "symfony/http-kernel": "dev-master"
     },
 
     "suggest": {
-        "symfony/config": "2.1.*",
-        "symfony/dependency-injection": "2.1.*",
-        "symfony/finder": "2.1.*"
+        "symfony/config": "dev-master",
+        "symfony/dependency-injection": "dev-master",
+        "symfony/finder": "dev-master"
     },
 
     "autoload": {

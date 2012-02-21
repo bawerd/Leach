@@ -1,0 +1,45 @@
+{
+    "hash": "dcb0277604ac0d19941a44a27159671b",
+    "packages": [
+        {
+            "package": "phuedx/tnetstring",
+            "version": "dev-master",
+            "source-reference": "f7f0f35f025fa9f650112ffed146c4dfc3553761"
+        },
+        {
+            "package": "symfony/config",
+            "version": "dev-master",
+            "source-reference": "00b748a23187c49ab9ae62b1b042487dea137dd0"
+        },
+        {
+            "package": "symfony/console",
+            "version": "dev-master",
+            "source-reference": "75ca31776bd98ad427f759cbe8a62400e40c73a1"
+        },
+        {
+            "package": "symfony/dependency-injection",
+            "version": "dev-master",
+            "source-reference": "f1574627cff5f16be1a9d5d1929eb41b95b04ec7"
+        },
+        {
+            "package": "symfony/event-dispatcher",
+            "version": "dev-master",
+            "source-reference": "716d0f5e627c66538853c0e52a3778534438b100"
+        },
+        {
+            "package": "symfony/finder",
+            "version": "dev-master",
+            "source-reference": "dd56fc9f1f0baa006d7491d5c17eb3e2dd8a066c"
+        },
+        {
+            "package": "symfony/http-foundation",
+            "version": "dev-master",
+            "source-reference": "4f29b46c69c3ad06a1b0ce2d75cce43b3406d02a"
+        },
+        {
+            "package": "symfony/http-kernel",
+            "version": "dev-master",
+            "source-reference": "e99c12b534bc6af192177bff19a53b3a27430a85"
+        }
+    ]
+}

@@ -1,7 +1,6 @@
 /build
 /build.xml
 /composer.phar
-/composer.lock
 /docs/_build
 /examples/leach.db
 /examples/logs
