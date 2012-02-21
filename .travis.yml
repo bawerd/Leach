@@ -7,7 +7,7 @@ php:
 
 branches:
   only:
-    - develop
+    - master
 
 before_script:
   - wget -nc http://getcomposer.org/composer.phar
