@@ -7,5 +7,6 @@
 
    usage/installation
    usage/configuration
+   usage/extending
    usage/examples
    usage/events

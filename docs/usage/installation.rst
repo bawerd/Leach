@@ -26,9 +26,6 @@ Add the following entry to your ``composer.json``:
 
 Checkout `detailed package information on Packagist`_.
 
-.. _detailed package information on Packagist:
-    http://packagist.org/packages/leach/leach
-
 ------------------------------
  PEAR package *(coming soon)*
 ------------------------------
@@ -57,3 +54,7 @@ Run ``leach`` executable from ``bin`` directory:
 .. code-block:: console
 
     php bin/leach
+
+
+.. _detailed package information on Packagist:
+    http://packagist.org/packages/leach/leach

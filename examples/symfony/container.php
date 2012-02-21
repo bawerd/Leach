@@ -11,4 +11,3 @@ $kernel = new AppKernel('prod', false);
 $kernel->loadClassCache();
 
 return new SymfonyContainer($kernel);
-
