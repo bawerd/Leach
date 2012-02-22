@@ -11,6 +11,7 @@
 
 namespace Leach\Tests\Container;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 use Silex\Application;
@@ -48,7 +49,7 @@ class SilexContainerTest extends TestCase
         $container = new SilexContainer($application);
         $this->assertInstanceOf(
             'Symfony\\Component\\HttpFoundation\\Response',
-            $container->handle($this->getRequestMock())
+            $container->handle(new Request())
         );
     }
 
@@ -57,7 +58,7 @@ class SilexContainerTest extends TestCase
      */
     public function testHandleWithHttpCache()
     {
-        $request = $this->getRequestMock();
+        $request = new Request();
         $response = $this->getResponseMock();
 
         $application = new Application();

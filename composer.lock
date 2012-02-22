@@ -1,10 +1,30 @@
 {
-    "hash": "2549ad80f641b31109ff94270e732a67",
+    "hash": "56489b36837e326121261938c1dc7733",
     "packages": [
         {
             "package": "phuedx/tnetstring",
             "version": "dev-master",
             "source-reference": "f7f0f35f025fa9f650112ffed146c4dfc3553761"
+        },
+        {
+            "package": "pimple/pimple",
+            "version": "dev-master",
+            "source-reference": "321db91e49b6cf8cbeed58d8db662d40de96d2c3"
+        },
+        {
+            "package": "silex/silex",
+            "version": "dev-master",
+            "source-reference": "219ba0703c8c3814a7ebe5695206111f80b8f716"
+        },
+        {
+            "package": "symfony/browser-kit",
+            "version": "dev-master",
+            "source-reference": "fa6d62d0c007c07f23b70f5b6644d9e4992df408"
+        },
+        {
+            "package": "symfony/class-loader",
+            "version": "dev-master",
+            "source-reference": "3c683c933d65aa9a535c9c419d536428afdabf80"
         },
         {
             "package": "symfony/config",
@@ -17,9 +37,19 @@
             "source-reference": "75ca31776bd98ad427f759cbe8a62400e40c73a1"
         },
         {
+            "package": "symfony/css-selector",
+            "version": "dev-master",
+            "source-reference": "5a5c778ee7d27228e9eaaa43a0e8e46b42bf9f9f"
+        },
+        {
             "package": "symfony/dependency-injection",
             "version": "dev-master",
             "source-reference": "f1574627cff5f16be1a9d5d1929eb41b95b04ec7"
+        },
+        {
+            "package": "symfony/dom-crawler",
+            "version": "dev-master",
+            "source-reference": "57a69cfa4ac3e7c4ff48d55d95dc9773e98cde49"
         },
         {
             "package": "symfony/event-dispatcher",
@@ -40,6 +70,11 @@
             "package": "symfony/http-kernel",
             "version": "dev-master",
             "source-reference": "e99c12b534bc6af192177bff19a53b3a27430a85"
+        },
+        {
+            "package": "symfony/routing",
+            "version": "dev-master",
+            "source-reference": "ed54b91173475ebfd55977ef080556cb90c8a840"
         }
     ]
 }

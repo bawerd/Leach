@@ -23,6 +23,7 @@
     },
 
     "suggest": {
+        "silex/silex": "dev-master",
         "symfony/config": "dev-master",
         "symfony/dependency-injection": "dev-master",
         "symfony/finder": "dev-master"

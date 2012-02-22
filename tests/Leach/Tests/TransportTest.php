@@ -21,6 +21,16 @@ use Leach\Transport;
 class TransportTest extends TestCase
 {
     /**
+     * @link http://pear.zero.mq/
+     */
+    public function setUp()
+    {
+        if (!extension_loaded('zmq')) {
+            $this->markTestSkipped('missing zmq extension');
+        }
+    }
+
+    /**
      * @covers \Leach\Transport::__construct
      */
     public function testTransport()
